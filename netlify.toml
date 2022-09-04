@@ -1,4 +1,4 @@
 [[redirects]]
   from = "https://main--tamarix-challenge.netlify.app/"
   to = "https://main--tamarix-challenge.netlify.app/dashboard"
-  status = 200
+  status = 301
