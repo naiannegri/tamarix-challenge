@@ -24,7 +24,7 @@ import {
   createForecast,
   setShowOptions,
   updateScenario,
-  setShowForecast
+  setShowForecast,
 } from "../../../redux/data/actions";
 import { MdAssignmentReturned } from "react-icons/md";
 import { FaTelegramPlane } from "react-icons/fa";
@@ -79,7 +79,7 @@ export const Projections = () => {
     selectedScenario,
     showForecast,
     forecast,
-    portfolio
+    portfolio,
   } = useAppSelector((state) => ({
     portfolio: state.Data.portfolios,
     selectedPortfolio: state.Data.selectedPortfolio,
@@ -91,22 +91,22 @@ export const Projections = () => {
 
   const [scenario, setScenario] = useState<any>();
   const [data, setData] = useState<any>();
-  const [data2, setData2] = useState<any>();
+  const [dataCalls, setDataCalls] = useState<any>();
+  const [dataNav, setDataNav] = useState<any>();
 
-  function removeDuplicates(originalArray:any, prop:any) {
+  function removeDuplicates(originalArray: any, prop: any) {
     var newArray = [];
-    var lookupObject:any  = {};
+    var lookupObject: any = {};
 
-    for(var i in originalArray) {
-       lookupObject[originalArray[i][prop]] = originalArray[i];
+    for (var i in originalArray) {
+      lookupObject[originalArray[i][prop]] = originalArray[i];
     }
 
-    for(i in lookupObject) {
-        newArray.push(lookupObject[i]);
+    for (i in lookupObject) {
+      newArray.push(lookupObject[i]);
     }
-     return newArray;
-}
-
+    return newArray;
+  }
 
   const scenarioOptions = useMemo(() => {
     return scenarios?.data?.scenarios?.map?.((item: any) => ({
@@ -125,6 +125,28 @@ export const Projections = () => {
     formState: { errors },
   } = methods;
 
+  function nFormatter(num: any, digits: number) {
+    const lookup = [
+      { value: 1, symbol: "" },
+      { value: 1e3, symbol: "k" },
+      { value: 1e6, symbol: "M" },
+      { value: 1e9, symbol: "G" },
+      { value: 1e12, symbol: "T" },
+      { value: 1e15, symbol: "P" },
+      { value: 1e18, symbol: "E" },
+    ];
+    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var item = lookup
+      .slice()
+      .reverse()
+      .find(function (item) {
+        return num >= item.value;
+      });
+    return item
+      ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol
+      : "0";
+  }
+
   const onGenerateForecast = () => {
     dispatch(
       createForecast({
@@ -134,7 +156,7 @@ export const Projections = () => {
         roadmap: [],
       })
     );
-    dispatch(setShowForecast(false))
+    dispatch(setShowForecast(false));
   };
 
   const nameArr = useMemo(() => {
@@ -151,16 +173,16 @@ export const Projections = () => {
     }
   }, [forecast]);
 
-  const portfoliosArr:any = useMemo(() => {
+  const portfoliosArr: any = useMemo(() => {
     if (
       portfolio?.data?.portfolios !== null &&
       portfolio?.data?.portfolios !== undefined
     ) {
-      var array = Object?.keys?.(portfolio?.data?.portfolios)?.map?.(
-        function (key:any) {
-          return portfolio?.data?.portfolios[key];
-        }
-      );
+      var array = Object?.keys?.(portfolio?.data?.portfolios)?.map?.(function (
+        key: any
+      ) {
+        return portfolio?.data?.portfolios[key];
+      });
       return array;
     }
   }, [portfolio]);
@@ -271,17 +293,21 @@ export const Projections = () => {
   //     console.log("data", newList);
   //   }
   // }, [forecast]);
-  const dataForecast2 = useMemo(() => {
+
+
+  const dataForecastCalls = useMemo(() => {
     let newList = [{}];
     if (nameArr) {
       Object.entries(forecast?.data?.portfolio["2021"] as any)?.map?.(
         ([key, subject], i) => {
-            newList.push({
-              Strategy: nameArr[i],
-              Year: "2021",
-              Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2021"][2] :forecast?.data?.portfolio["2021"][13] ,
-            });
-
+          newList.push({
+            Strategy: nameArr[i],
+            Year: "2021",
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2021"][2]
+                : forecast?.data?.portfolio["2021"][13])/1000,
+          });
         }
       );
       Object.entries(forecast?.data?.portfolio["2022"] as any)?.map?.(
@@ -289,7 +315,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2022",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2022"][2] :forecast?.data?.portfolio["2022"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2022"][2]
+                : forecast?.data?.portfolio["2022"][13])/1000,
           });
         }
       );
@@ -298,7 +327,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2023",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2023"][2] :forecast?.data?.portfolio["2023"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2023"][2]
+                : forecast?.data?.portfolio["2023"][13])/1000,
           });
         }
       );
@@ -307,7 +339,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2024",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2024"][2] :forecast?.data?.portfolio["2024"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2024"][2]
+                : forecast?.data?.portfolio["2024"][13])/1000,
           });
         }
       );
@@ -316,7 +351,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2025",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2025"][2] :forecast?.data?.portfolio["2025"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2025"][2]
+                : forecast?.data?.portfolio["2025"][13])/1000,
           });
         }
       );
@@ -325,7 +363,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2026",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2026"][2] :forecast?.data?.portfolio["2026"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2026"][2]
+                : forecast?.data?.portfolio["2026"][13])/1000,
           });
         }
       );
@@ -334,7 +375,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2027",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2027"][2] :forecast?.data?.portfolio["2027"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2027"][2]
+                : forecast?.data?.portfolio["2027"][13])/1000,
           });
         }
       );
@@ -343,7 +387,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2028",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2028"][2] :forecast?.data?.portfolio["2028"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2028"][2]
+                : forecast?.data?.portfolio["2028"][13])/1000,
           });
         }
       );
@@ -352,7 +399,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2029",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2029"][2] :forecast?.data?.portfolio["2029"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2029"][2]
+                : forecast?.data?.portfolio["2029"][13])/1000,
           });
         }
       );
@@ -361,7 +411,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2030",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2030"][2] :forecast?.data?.portfolio["2030"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2030"][2]
+                : forecast?.data?.portfolio["2030"][13])/1000,
           });
         }
       );
@@ -370,27 +423,33 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2031",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2031"][2] :forecast?.data?.portfolio["2031"][13] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2031"][2]
+                : forecast?.data?.portfolio["2031"][13])/1000,
           });
         }
       );
-      newList = removeDuplicates(newList,'Values')
-      newList.pop()
-      setData(newList);
-      console.log("data", newList);
+      newList = removeDuplicates(newList, "Values");
+      newList.pop();
+      setDataCalls(newList);
+      console.log("data calls", newList);
     }
   }, [forecast]);
-  const dataForecast3 = useMemo(() => {
+
+  const dataForecastNav = useMemo(() => {
     let newList = [{}];
     if (nameArr) {
       Object.entries(forecast?.data?.portfolio["2021"] as any)?.map?.(
         ([key, subject], i) => {
-            newList.push({
-              Strategy: nameArr[i],
-              Year: "2021",
-              Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2021"][7] :forecast?.data?.portfolio["2021"][18] ,
-            });
-
+          newList.push({
+            Strategy: nameArr[i],
+            Year: "2021",
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2021"][7]
+                : forecast?.data?.portfolio["2021"][18])/1000,
+          });
         }
       );
       Object.entries(forecast?.data?.portfolio["2022"] as any)?.map?.(
@@ -398,7 +457,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2022",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2022"][7] :forecast?.data?.portfolio["2022"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2022"][7]
+                : forecast?.data?.portfolio["2022"][18])/1000,
           });
         }
       );
@@ -407,7 +469,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2023",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2023"][7] :forecast?.data?.portfolio["2023"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2023"][7]
+                : forecast?.data?.portfolio["2023"][18])/1000,
           });
         }
       );
@@ -416,7 +481,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2024",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2024"][7] :forecast?.data?.portfolio["2024"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2024"][7]
+                : forecast?.data?.portfolio["2024"][18])/1000,
           });
         }
       );
@@ -425,7 +493,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2025",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2025"][7] :forecast?.data?.portfolio["2025"][18] ,
+            Values:
+             ( selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2025"][7]
+                : forecast?.data?.portfolio["2025"][18])/1000,
           });
         }
       );
@@ -434,7 +505,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2026",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2026"][7] :forecast?.data?.portfolio["2026"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2026"][7]
+                : forecast?.data?.portfolio["2026"][18])/1000,
           });
         }
       );
@@ -443,7 +517,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2027",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2027"][7] :forecast?.data?.portfolio["2027"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2027"][7]
+                : forecast?.data?.portfolio["2027"][18])/1000,
           });
         }
       );
@@ -452,7 +529,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2028",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2028"][7] :forecast?.data?.portfolio["2028"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2028"][7]
+                : forecast?.data?.portfolio["2028"][18])/1000,
           });
         }
       );
@@ -461,7 +541,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2029",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2029"][7] :forecast?.data?.portfolio["2029"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2029"][7]
+                : forecast?.data?.portfolio["2029"][18])/1000,
           });
         }
       );
@@ -470,7 +553,10 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2030",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2030"][7] :forecast?.data?.portfolio["2030"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2030"][7]
+                : forecast?.data?.portfolio["2030"][18])/1000,
           });
         }
       );
@@ -479,19 +565,19 @@ export const Projections = () => {
           newList.push({
             Strategy: nameArr[i],
             Year: "2031",
-            Values: selectedPortfolio?.data?.port_name === String(portfoliosArr[0]) ?  forecast?.data?.portfolio["2031"][7] :forecast?.data?.portfolio["2031"][18] ,
+            Values:
+              (selectedPortfolio?.data?.port_name === String(portfoliosArr[0])
+                ? forecast?.data?.portfolio["2031"][7]
+                : forecast?.data?.portfolio["2031"][18])/1000,
           });
         }
       );
-      newList = removeDuplicates(newList,'Values')
-      newList.pop()
-      setData2(newList);
-      console.log("data", newList);
+      newList = removeDuplicates(newList, "Values");
+      newList.pop();
+      setDataNav(newList);
+      console.log("data nav", newList);
     }
   }, [forecast]);
-
-
-
 
   return (
     <div className="p-5 align-items-center  justify-content-center align-content-center ">
@@ -517,11 +603,10 @@ export const Projections = () => {
       >
         Generate Forecast
       </Button>
-      {showForecast && 
-          data && (
-            <>
-          <DashboardHeader subtitle="Calls - cum" />
-            <div
+      {showForecast && dataCalls && (
+        <>
+          <DashboardHeader subtitle="Calls - cum (x $1000 USD)" />
+          <div
             className="bg-second mt-2"
             style={{
               height: "250px",
@@ -533,20 +618,29 @@ export const Projections = () => {
               width="100%"
               height="100%"
             >
-              <BarChart width={600} height={300} data={data}>
+              <BarChart width={600} height={300} data={dataCalls}>
                 <XAxis dataKey="Year" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Values" stackId="a" fill="#94c3a7"   fillOpacity={0.5}/>
-                <Bar dataKey="Strategy" stackId="a" fill="#435050"  fillOpacity={0.5}/>
+                <Bar
+                  dataKey="Values"
+                  stackId="a"
+                  fill="#94c3a7"
+                  fillOpacity={0.5}
+                />
+                <Bar
+                  dataKey="Strategy"
+                  stackId="a"
+                  fill="#607575"
+                  fillOpacity={0.5}
+                />
               </BarChart>
-    
             </ResponsiveContainer>
-            </div>
-            <DashboardHeader subtitle="NAV Exposure" />
+          </div>
+          <DashboardHeader subtitle="NAV Exposure (x $1000 USD)" />
 
-            <div
+          <div
             className="bg-second mt-2"
             style={{
               height: "250px",
@@ -558,20 +652,28 @@ export const Projections = () => {
               width="100%"
               height="100%"
             >
-              <BarChart width={600} height={300} data={data2}>
+              <BarChart width={600} height={300} data={dataNav}>
                 <XAxis dataKey="Year" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Values" stackId="a" fill="#94c3a7"   fillOpacity={0.5}/>
-                <Bar dataKey="Strategy" stackId="a" fill="#435050"  fillOpacity={0.5}/>
+                <Bar
+                  dataKey="Values"
+                  stackId="a"
+                  fill="#94c3a7"
+                  fillOpacity={0.5}
+                />
+                <Bar
+                  dataKey="Strategy"
+                  stackId="a"
+                  fill="#607575"
+                  fillOpacity={0.5}
+                />
               </BarChart>
-    
             </ResponsiveContainer>
-            </div>
-            </>
-          )}
-      
+          </div>
+        </>
+      )}
     </div>
   );
 };

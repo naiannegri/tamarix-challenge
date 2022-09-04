@@ -14,7 +14,8 @@ import {
   updateScenario as updateScenarioApi,
   createForecasts as createForecastsApi
  } from "../../services";
-import { toast } from "react-toastify";
+ import { ToastContainer, toast } from 'react-toastify';
+ import 'react-toastify/dist/ReactToastify.css';
 
 
 function* getAllPortfolios() {
@@ -90,12 +91,12 @@ function* updateScenario({ payload: params }: any) {
         response
       )
     );
-    toast.success("Scenario was updated!")
+    toast.success("Scenario updated!");
   } catch (error: any) {
     yield put(
       dataApiResponseError(DataActionTypes.UPDATE_SCENARIO, error)
     );
-    toast.error(error)
+    toast.error(error);
   }
 }
 
@@ -108,10 +109,12 @@ function* createForecast({ payload: params }: any) {
         response
       )
     );
+    toast.success("Forecast created!");
   } catch (error: any) {
     yield put(
       dataApiResponseError(DataActionTypes.CREATE_FORECAST, error)
     );
+    toast.error(error);
   }
 }
 
