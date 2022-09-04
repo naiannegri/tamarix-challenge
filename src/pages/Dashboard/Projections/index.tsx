@@ -433,7 +433,6 @@ export const Projections = () => {
       newList = removeDuplicates(newList, "Values");
       newList.pop();
       setDataCalls(newList);
-      console.log("data calls", newList);
     }
   }, [forecast]);
 
@@ -575,7 +574,6 @@ export const Projections = () => {
       newList = removeDuplicates(newList, "Values");
       newList.pop();
       setDataNav(newList);
-      console.log("data nav", newList);
     }
   }, [forecast]);
 
@@ -614,7 +612,7 @@ export const Projections = () => {
             }}
           >
             <ResponsiveContainer
-              className="background-button-color rounded py-1 ms-2"
+              className="background-button-color rounded py-1 "
               width="100%"
               height="100%"
             >
@@ -648,7 +646,7 @@ export const Projections = () => {
             }}
           >
             <ResponsiveContainer
-              className="background-button-color rounded py-1 ms-2"
+              className="background-button-color rounded py-1 "
               width="100%"
               height="100%"
             >
