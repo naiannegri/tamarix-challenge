@@ -1,2 +1,4 @@
-/              /
-/dashboard  /dashboard
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard"
+  status = 301
