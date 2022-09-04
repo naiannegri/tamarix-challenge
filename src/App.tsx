@@ -7,6 +7,7 @@ import { Button } from 'reactstrap';
 import { Welcome } from './components/Welcome';
 import './assets/base.scss';
 import { Dashboard } from './pages/Dashboard';
+import Lottie from 'react-lottie';
 
 const App = () => {
   return (

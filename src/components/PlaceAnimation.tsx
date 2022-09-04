@@ -1,6 +1,6 @@
 import React from "react";
+import Lottie from "react-lottie";
 import { useRedux } from "../hooks/index";
-import Lottie from "lottie-react-web";
 
 interface PlaceholderAnimationProps {
   children?: any;
@@ -17,7 +17,7 @@ const PlaceholderAnimation = ({
   return (
     <>
         <Lottie
-          height={height}
+          style={{height:height}}
           options={{
             animationData: url,
           }}

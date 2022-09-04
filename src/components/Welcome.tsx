@@ -1,12 +1,8 @@
-import clsx from 'clsx';
-import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { useRedux } from '../hooks';
-import { getAllPortfolios, getPortfolio, getScenarios, getScenario } from '../redux/actions';
-import projectLogo from '../assets/images/react.svg'
 import  Footer  from './Footer';
 import background from '../assets/images/composed-bg/background.jpg';
-import { Badge, Button, UncontrolledTooltip } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Header } from './Header';
 
 
