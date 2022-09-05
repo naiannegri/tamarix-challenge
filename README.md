@@ -1,6 +1,6 @@
 ## Cash Flow Forecaster
 
-This project was developed to FoFs managers to monitor their portfolios. It was build with react, bootstrap and sass. 
+This project was developed to FoFs managers to monitor their portfolios. It was build with typescript, react, bootstrap and sass. 
 
 ##  Future implementations
 
