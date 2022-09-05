@@ -1,22 +1,22 @@
 ## Cash Flow Forecaster
 
-This project was developed to FoFs managers to monitor their portfolios. It was build with typescript, react, bootstrap and sass. 
+This project was developed to FoFs managers to monitor their portfolios. It was build with typescript, react - redux/saga, bootstrap and sass. 
 
 ##  Future implementations
 
-- deal with data more cleverly on the projections component;
-- debug toast to appear when API returns success/error when PUT and POST requests are made;
-- implement filters on the existing commitments page - opening a modal when clicking the "filters" button;
-- correction to input value in scenarios strategy and fund (when typing negative numbers appears NaN);
-- make all tooltips equal;
-- adjust graphic responsiveness;
-- adjust data sent to API for when only some values are updated in IRR Fund;
-- correction to responsiveness - make content centralized on the screen;
-- ordinate the graphic by year for NAV data in projections (ascending);
-- add animation to select a portfolio page (I had a conflict during the building process and have to remove it)
-- implement unit tests in all components - using jest;
-- implement end to end tests - cypress;
-- remove unused variables from sass;
+- Deal with data more cleverly on the projections component;
+- Debug toast to appear when API returns success/error when PUT and POST requests are made;
+- Implement filters on the existing commitments page - opening a modal when clicking the "filters" button;
+- Correction to input value in scenarios strategy and fund (when typing negative numbers appears NaN);
+- Make all tooltips equal;
+- Adjust graphic responsiveness;
+- Adjust data sent to API for when only some values are updated in IRR Fund;
+- Correction to responsiveness - make content centralized on the screen;
+- Ordinate the graphic by year for NAV data in projections (ascending);
+- Add animation to select a portfolio page (I had a conflict during the building process and have to remove it)
+- Implement unit tests in all components - using jest;
+- Implement end to end tests - cypress;
+- Remove unused variables from sass;
 
 ## Available Scripts
 
