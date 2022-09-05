@@ -1,26 +1,29 @@
 import React from "react";
 import { useRedux } from "../hooks/index";
+import { Player } from '@lottiefiles/react-lottie-player';
 
 interface PlaceholderAnimationProps {
-  children?: any;
-  url:any;
-  height: any;
+  animation: any;
+  height: string;
+  width:string;
 }
 
 const PlaceholderAnimation = ({
-  url,
+  animation,
   height,
+  width
 }: PlaceholderAnimationProps) => {
   const { useAppSelector } = useRedux();
 
   return (
     <>
-        {/* <Lottie
-          style={{height:height}}
-          options={{
-            animationData: url,
-          }}
-        /> */}
+        <Player
+        src={animation}
+        className="player"
+        loop
+        autoplay
+        style={{height: height, width: width}}
+        />
     </>
   );
 };

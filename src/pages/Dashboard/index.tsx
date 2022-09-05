@@ -195,7 +195,7 @@ export const Dashboard = () => {
                 style={{ height: "200px" }}
               >
                 <div className="mt-5">
-                  <PlaceAnimation url={graph} height={200} />
+                  <PlaceAnimation animation={graph} height={'200px'} width={'300px'} />
                 </div>
                 <div className="align-items-center d-flex text-center justify-content-center align-content-center row">
                   <h2 className="text-muted m-5">Select a portfolio</h2>
@@ -220,7 +220,7 @@ export const Dashboard = () => {
                 style={{ height: "200px" }}
               >
                 <div className="mt-5">
-                  <PlaceAnimation url={graph} height={200} />
+                <PlaceAnimation animation={graph} height={'200px'} width={'300px'} />
                 </div>
                 <div className="align-items-center d-flex text-center justify-content-center align-content-center row">
                   <h2 className="text-muted m-5">Select a portfolio</h2>
