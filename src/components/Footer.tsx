@@ -124,7 +124,7 @@ export const Footer = () => {
                       </p>
                       <div id="mc_embed_signup">
                         <form
-                          action="https://gmail.us3.list-manage.com/subscribe/post?u=3ebc33a3d37f2278158d74721&amp;id=a122e673aa"
+                          action="#"
                           className="validate"
                           id="mc-embedded-subscribe-form"
                           method="post"
