@@ -12,11 +12,11 @@ export const Header = () =>{
           <div className="container-fluid">
           <Navbar bg="bg-second" variant="dark">
           <Navbar.Brand href="/">TAMARIX</Navbar.Brand>
-          {/* <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav> */}
+          <Nav className="me-auto">
+            <Nav.Link href="/">Home</Nav.Link>
+            {/* <Nav.Link href="#features">Features</Nav.Link>
+            <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+          </Nav>
       </Navbar>
           </div>
         </div>
