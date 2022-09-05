@@ -1,10 +1,10 @@
-## Cash Flow Forecaster App
+## Cash Flow Forecaster
 
-This project was developed to FoFs managers to monitor their portfolios. It was build with react, bootstrap and sass. 
+This project was developed to FoFs managers to monitor their portfolios. It was build with typescript, react, bootstrap and sass. 
 
 ##  Future implementations
 
-- deal with data more cleverly on the projections page;
+- deal with data more cleverly on the projections component;
 - debug toast to appear when API returns success/error when PUT and POST requests are made;
 - implement filters on the existing commitments page - opening a modal when clicking the "filters" button;
 - correction to input value in scenarios strategy and fund (when typing negative numbers appears NaN);
