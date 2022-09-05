@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./Footer";
 import background from "../assets/images/composed-bg/background.jpg";
 import { Button } from "reactstrap";
 import { Header } from "./Header";
@@ -57,7 +56,6 @@ export const Welcome = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
