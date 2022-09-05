@@ -5,21 +5,17 @@ import { VscGraph } from "react-icons/vsc";
 import { IoIosOptions } from "react-icons/io";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import { IoLogoIonic } from "react-icons/io";
-import DataCard from "../../components/DataCard";
-import welcome from "../../assets/animation/welcome.json";
 import graph from "../../assets/animation/graph.json";
 import PlaceAnimation from "../../components/PlaceAnimation";
-import Select, { components } from "react-select";
+import Select from "react-select";
 import { useRedux } from "../../hooks";
 import {
   getPortfolio,
-  getScenario,
   getScenarios,
   getAllPortfolios,
   setActivePage,
 } from "../../redux/actions";
 import { Commitments } from "./Commitments";
-import { ResponsiveContainer } from "recharts";
 import { Scenarios } from "./Scenarios";
 import { Projections } from "./Projections";
 
@@ -70,9 +66,6 @@ export const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getAllPortfolios());
-    // dispatch(getPortfolio('port_1'))
-    // dispatch(getScenarios('example'))
-    // dispatch(getScenario('example', 'example'))
   }, []);
 
   const portfolioOptions = useMemo(() => {
@@ -188,16 +181,6 @@ export const Dashboard = () => {
                   </>
                 )}
               </ul>
-              {/* <div className="dropdown ">
-                    <a href="#" className="d-flex align-items-center justify-content-center p-3 link-dark  text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className="bi-person-circle h2"></i>
-                    </a>
-                    <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                        <li><a className="dropdown-item" href="#">New project...</a></li>
-                        <li><a className="dropdown-item" href="#">Settings</a></li>
-                        <li><a className="dropdown-item" href="#">Profile</a></li>
-                    </ul>
-                </div> */}
             </div>
           </div>
           <div className="col-sm-10 p-4 min-vh-100">

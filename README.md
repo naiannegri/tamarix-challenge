@@ -1,10 +1,31 @@
-# Getting Started with Create React App
+## Cash Flow Forecaster App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed to FoFs managers to monitor their portfolios. It was build with react, bootstrap and sass. 
+
+##  Future implementations
+
+- deal with data more cleverly on the projections page;
+- debug toast to appear when API returns success/error when PUT and POST requests are made;
+- implement filters on the existing commitments page - opening a modal when clicking the "filters" button;
+- correction to input value in scenarios strategy and fund (when typing negative numbers appears NaN);
+- make all tooltips equal;
+- adjust graphic responsiveness;
+- adjust data sent to API for when only some values are updated in IRR Fund;
+- correction to responsiveness - make content centralized on the screen;
+- ordinate the graphic by year for NAV data in projections (ascending);
+- add animation to select a portfolio page (I had a conflict during the building process and have to remove it)
+- implement unit tests in all components - using jest;
+- implement end to end tests - cypress;
+- remove unused variables from sass;
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+
+### `npm install`
+Install all the packages in package.json for this api.
+
 
 ### `npm start`
 

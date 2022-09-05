@@ -1,13 +1,10 @@
 import React from "react";
-import { useRedux } from "../hooks";
 import Footer from "./Footer";
 import background from "../assets/images/composed-bg/background.jpg";
 import { Button } from "reactstrap";
 import { Header } from "./Header";
 
 export const Welcome = () => {
-  const { dispatch, useAppSelector } = useRedux();
-
   return (
     <>
       <Header />
@@ -24,19 +21,6 @@ export const Welcome = () => {
                 <div className="row">
                   <div className=" ">
                     <div className="text-center ">
-                      {/* <Badge
-                        pill
-                        color="info"
-                        className="px-4 text-uppercase h-auto py-1"
-                        id="ProjVersion123">
-                        FREE react UI Kit
-                      </Badge>
-                      <UncontrolledTooltip
-                        placement="top"
-                        target="ProjVersion123">
-                        Version: 1.1.0
-                      </UncontrolledTooltip> */}
-
                       <div className="px-4 px-sm-0 text-white ">
                         <h1 className="display-2 mb-5 font-weight-bold">
                           TAMARIX{" "}

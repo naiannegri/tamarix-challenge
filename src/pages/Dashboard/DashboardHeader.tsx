@@ -1,5 +1,4 @@
 import React from 'react';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 interface HeaderProps{
     title?:string;

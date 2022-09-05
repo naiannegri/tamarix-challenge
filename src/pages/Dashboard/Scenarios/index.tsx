@@ -1,14 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button, Col, Input, Label, Row } from "reactstrap";
-import DataCard from "../../../components/DataCard";
 import { useRedux } from "../../../hooks";
-import { FiFilter } from "react-icons/fi";
-import { ChartLines, ChartPie, SliderRange } from "../../../components/Chart";
+import { SliderRange } from "../../../components/Chart";
 import { DashboardHeader } from "../DashboardHeader";
-import { ResponsiveContainer } from "recharts";
-import Select, { components } from "react-select";
+import Select from "react-select";
 import { getScenario } from "../../../redux/actions";
-import { Controller, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import RangeSlider from "react-bootstrap-range-slider";
 import { setShowOptions, updateScenario } from "../../../redux/data/actions";
 import { MdAssignmentReturned } from "react-icons/md"
@@ -90,7 +87,6 @@ export const Scenarios = () => {
   const [selectedDistribution, setSelectedDistribution] = useState(distributionSpeed);
   const [selectedCalls, setSelectedCalls] = useState(callSpeed);
   const [valueFund,setValueFund]=useState<any>([])
-  const [finalValueFund,setFinalValueFund]=useState<any>()
 
   useEffect(() => {
     setValueBuy((cmas?.Buyout as any) * 100)
@@ -99,15 +95,6 @@ export const Scenarios = () => {
     setValueInfra((cmas?.Infrastructure as any) * 100)
   },[cmas])
 
-
-  // useEffect(() => {
-  //   const handleChangeInRange = () => {
-  //     setLastValue(window.innerWidth);
-  //   };
-
-  //   window.addEventListener("resize", handleWindowResize);
-  //   return () => window.removeEventListener("resize", handleWindowResize);
-  // }, []);
 
   const onChangeSelect = (value: any) => {
     dispatch(
@@ -174,24 +161,6 @@ export const Scenarios = () => {
         }
     }))
   };
-
-
-  // const finalFundValues = useMemo(() => {
-  //   let newList = [{}]
-  //   if(overrides && valueFund?.length>0){
-  //     Object.entries(overrides)?.map?.(([key, subject], i) => {
-  //       newList.push({
-  //         key: listFunds[i] ? listFunds[i] : subject
-  //       })
-  //     })
-  //     setFinalValueFund(newList as any)
-  //     return newList
-  //   }
-  //   console.log('final',newList)
-  //   console.log('final value fund',listFunds)
-
-  // }, [overrides, valueFund, listFunds?.length])
-
 
   const handleChange = (e:any, i:any,name:any) => {
     const { value } = e.target;

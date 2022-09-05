@@ -18,11 +18,6 @@ export const Header = () =>{
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav>
       </Navbar>
-
-            {/* <div className="nav-logo">
-              <Link to="/" title="">
-              </Link>
-            </div> */}
           </div>
         </div>
     </>

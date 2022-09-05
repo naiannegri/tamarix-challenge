@@ -15,28 +15,6 @@ export const Commitments = () => {
     selectedPortfolio: state.Data.selectedPortfolio,
   }));
 
-  function nFormatter(num: any, digits: number) {
-    const lookup = [
-      { value: 1, symbol: "" },
-      { value: 1e3, symbol: "k" },
-      { value: 1e6, symbol: "M" },
-      { value: 1e9, symbol: "G" },
-      { value: 1e12, symbol: "T" },
-      { value: 1e15, symbol: "P" },
-      { value: 1e18, symbol: "E" },
-    ];
-    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-    var item = lookup
-      .slice()
-      .reverse()
-      .find(function (item) {
-        return num >= item.value;
-      });
-    return item
-      ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol
-      : "0";
-  }
-
   const [calls, setCalls] = useState(
     selectedPortfolio?.data?.port_data["Total called"]
   );
@@ -62,6 +40,28 @@ export const Commitments = () => {
     selectedPortfolio?.data?.port_data["Currency"]
   );
   const [currencyCounter, setCurrencyCounter] = useState([]);
+
+  function nFormatter(num: any, digits: number) {
+    const lookup = [
+      { value: 1, symbol: "" },
+      { value: 1e3, symbol: "k" },
+      { value: 1e6, symbol: "M" },
+      { value: 1e9, symbol: "G" },
+      { value: 1e12, symbol: "T" },
+      { value: 1e15, symbol: "P" },
+      { value: 1e18, symbol: "E" },
+    ];
+    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var item = lookup
+      .slice()
+      .reverse()
+      .find(function (item) {
+        return num >= item.value;
+      });
+    return item
+      ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol
+      : "0";
+  }
 
   const commitmentsCounter = useMemo(() => {
     let initialValue = 0;
@@ -202,19 +202,18 @@ export const Commitments = () => {
       }
 
       if (obj[property] === value) {
-        return 1; // count = count + 1; // count++;
+        return 1;
       }
     }
     return count;
   };
 
-
   return (
     <div className="p-5">
-        <DashboardHeader
-          title="Existing Commitments"
-          subtitle="Summary statistics"
-        />
+      <DashboardHeader
+        title="Existing Commitments"
+        subtitle="Summary statistics"
+      />
       <Row>
         <div className="mt-5 card-group flex-column flex-sm-column flex-md-row flex-lg-row gap-3 align-items-center justify-content-center  ">
           <div className="card bg-second rounded-3">
@@ -268,11 +267,6 @@ export const Commitments = () => {
                 <DataCard title={`${TVPI.toFixed(2)}x`} subtitle="TVPI" />
               )}
           </div>
-          {/* <DataCard title="$112.40m" subtitle="Total committed" />
-          <DataCard title="4" subtitle="Strategy" />
-          <DataCard title="20" subtitle="Funds" />
-          <DataCard title="$112.40m" subtitle="Total committed" />
-          <DataCard title="4" subtitle="Strategy" /> */}
         </div>
         <div className="mt-5 card-group d-inline-flex flex-column  align-items-start justify-content-start  flex-lg-row flex-md-column flex-sm-column">
           <Button className="bg-second border-second  text-muted ms-2">
@@ -281,52 +275,42 @@ export const Commitments = () => {
         </div>
         <div className="container ">
           <div className="row justify-content-md-center flex-lg-wrap  flex-md-wrap ">
-
             <Row className="col-sm flex flex-lg-wrap flex-md-wrap ">
               <Col sm={12} lg={4} md={4}>
-              {" "}
-              {/* <ResponsiveContainer width="99%" > */}
-              <ChartPie
-                data={strategyCounter}
-                nameKey="name"
-                innerRadius='45%'
-                outerRadius='60%'
-                paddingAngle={5}
-                dataKey="value"
-                colors={["#cfdda3", "#98a377", "#b2b299", "#b8ba68"]}
-              />
+                {" "}
+                <ChartPie
+                  data={strategyCounter}
+                  nameKey="name"
+                  innerRadius="45%"
+                  outerRadius="60%"
+                  paddingAngle={5}
+                  dataKey="value"
+                  colors={["#cfdda3", "#98a377", "#b2b299", "#b8ba68"]}
+                />
               </Col>
-              {/* </ResponsiveContainer> */}
-              {/* <ResponsiveContainer width="99%" > */}
               <Col sm={12} lg={4} md={4}>
-              <ChartPie
-                nameKey="name"
-                data={vintageCounter}
-                innerRadius='45%'
-                outerRadius='60%'
-                paddingAngle={4}
-                dataKey="value"
-                colors={["#cfdda3", "#98a377", "#b2b299", "#b8ba68"]}
-              />
+                <ChartPie
+                  nameKey="name"
+                  data={vintageCounter}
+                  innerRadius="45%"
+                  outerRadius="60%"
+                  paddingAngle={4}
+                  dataKey="value"
+                  colors={["#cfdda3", "#98a377", "#b2b299", "#b8ba68"]}
+                />
               </Col>
-              {/* </ResponsiveContainer> */}
-              {/* <ResponsiveContainer width="99%" > */}
-                      <Col sm={12} lg={4} md={4}>
-
-              <ChartPie
-                nameKey="name"
-                data={currencyCounter}
-                innerRadius='45%'
-                outerRadius='60%'
-                paddingAngle={5}
-                dataKey="value"
-                colors={["#cfdda3", "#98a377", "#b2b299", "435050"]}
-              />
+              <Col sm={12} lg={4} md={4}>
+                <ChartPie
+                  nameKey="name"
+                  data={currencyCounter}
+                  innerRadius="45%"
+                  outerRadius="60%"
+                  paddingAngle={5}
+                  dataKey="value"
+                  colors={["#cfdda3", "#98a377", "#b2b299", "435050"]}
+                />
               </Col>
-              {/* </ResponsiveContainer> */}
-
-           
-          </Row>
+            </Row>
           </div>
         </div>
         <div

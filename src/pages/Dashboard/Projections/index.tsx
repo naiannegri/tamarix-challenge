@@ -1,36 +1,23 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, Col, Input, Label, Row } from "reactstrap";
-import DataCard from "../../../components/DataCard";
 import { useRedux } from "../../../hooks";
-import { FiFilter } from "react-icons/fi";
-import { ChartLines, ChartPie, SliderRange } from "../../../components/Chart";
 import { DashboardHeader } from "../DashboardHeader";
 import {
-  AreaChart,
   Bar,
   BarChart,
-  CartesianGrid,
   Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
-import Select, { components } from "react-select";
-import { getScenario } from "../../../redux/actions";
-import { Controller, useForm } from "react-hook-form";
-import RangeSlider from "react-bootstrap-range-slider";
+import Select from "react-select";
+import {  useForm } from "react-hook-form";
+
 import {
   createForecast,
-  setShowOptions,
-  updateScenario,
   setShowForecast,
 } from "../../../redux/data/actions";
-import { MdAssignmentReturned } from "react-icons/md";
-import { FaTelegramPlane } from "react-icons/fa";
-import { MdOutlineTrendingUp } from "react-icons/md";
-import Form from "react-bootstrap/Form";
-import { PORTFOLIOS } from "../../../services/urls";
 
 export const Projections = () => {
   const customStyles = {
@@ -186,113 +173,6 @@ export const Projections = () => {
       return array;
     }
   }, [portfolio]);
-
-  // const dataForecast = useMemo(() => {
-  //   let newList = [{}];
-  //   if (nameArr) {
-  //     Object.entries(forecast?.data?.portfolio["2021"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2021",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2022"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2022",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2023"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2023",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2024"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2024",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2025"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2025",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2026"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2026",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2027"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2027",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2028"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2028",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2029"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2029",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2030"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2030",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     Object.entries(forecast?.data?.portfolio["2031"] as any)?.map?.(
-  //       ([key, subject], i) => {
-  //         newList.push({
-  //           Strategy: nameArr[i],
-  //           Year: "2031",
-  //           Values: subject,
-  //         });
-  //       }
-  //     );
-  //     setData(newList);
-  //     console.log("data", newList);
-  //   }
-  // }, [forecast]);
 
 
   const dataForecastCalls = useMemo(() => {
